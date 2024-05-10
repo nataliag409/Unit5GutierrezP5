@@ -19,28 +19,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isGameActive = true;
-        score = 0;
 
-        StartCoroutine(SpawnTarget());
-        UpdateScore(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator SpawnTarget()
     {
-        while(isGameActive)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
             Instantiate(targets[index]);
         }
-       
+
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -59,5 +55,15 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void StartGame()
+    {
+
+        isGameActive = true;
+        score = 0;
+
+        StartCoroutine(SpawnTarget());
+        UpdateScore(0);
     }
 }
